@@ -2,9 +2,8 @@
 (function() {
 	'use strict';
 	// currently Polymer requries lazyRegister in order to use native CSS properties
-	window.Polymer = {
-		lazyRegister: true
-	};
+	window.Polymer = window.Polymer || {};
+	window.Polymer.lazyRegister = true;
 })();
 </script>
 
