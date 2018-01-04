@@ -204,11 +204,6 @@
 			},
 
 			_updateDirectionState: function() {
-				var fixtures = this._getFixtures();
-				if (!fixtures) {
-					return;
-				}
-
 				var isRtl = (window.location.search.indexOf('dir=rtl') > -1);
 
 				var changeDirection = this.$$('.d2l-demo-direction');
@@ -220,22 +215,11 @@
 					changeDirection.setAttribute('href', this._updateQueryStringParameter(window.location.href, 'dir', 'rtl'));
 				}
 
-				var update = function(fixture) {
-					if (isRtl && fixture.dir !== 'rtl') {
-						fixture.dir = 'rtl';
-					} else if (!isRtl && fixture.dir === 'rtl') {
-						fixture.dir = '';
-					}
-				};
-
-				if (fixtures.length === 0) {
-					update(document.documentElement);
-				} else {
-					for (var i = 0; i < fixtures.length; i++) {
-						update(fixtures[i]);
-					}
+				if (isRtl && document.documentElement.dir !== 'rtl') {
+					document.documentElement.dir = 'rtl';
+				} else if (!isRtl && document.documentElement.dir === 'rtl') {
+					document.documentElement.dir = '';
 				}
-
 			},
 
 			_updateShadowState: function() {
